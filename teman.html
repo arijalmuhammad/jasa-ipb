@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B7A72">
+<meta name="robots" content="noindex">
+<title>Jadwal Jaga · Klinik IPB</title>
+<link rel="icon" href="ikon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+:root{--utama:#0B7A72;--utama-tua:#075E58;--utama-tipis:#E6F4F2;--kanvas:#F5F8F8;--isian:#F2F6F6;--putih:#FFFFFF;--garis:#D5E0E0;--pemisah:#E3EBEA;
+  --teks:#0F2742;--teks-2:#4F6478;--redup:#8A99A1;--merah:#B91C1C;--kuning:#B45309;--kuning-tipis:#FEF3C7;--hijau:#3B7A1E}
+@media (prefers-color-scheme:dark){:root{--utama:#2BB3A8;--utama-tua:#5FD0C6;--utama-tipis:#123A38;--kanvas:#0E1A1F;--isian:#15252B;--putih:#12212A;--garis:#2A3D44;--pemisah:#1E3036;
+  --teks:#E6EEF0;--teks-2:#9DB0B8;--redup:#6F838C;--merah:#F08080;--kuning:#E0A458;--kuning-tipis:#2C2416;--hijau:#7FC86A}}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--kanvas);color:var(--teks);font-family:'Source Sans 3',system-ui,sans-serif;font-size:15px}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--utama);outline-offset:2px}
+header{background:var(--putih);border-bottom:1px solid var(--garis)}
+.dalam{max-width:760px;margin:0 auto;padding:16px}
+h1{margin:0;font-size:22px}.sub{margin:4px 0 0;color:var(--teks-2);font-size:14px}
+.legenda{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--teks-2);margin:16px 0 8px}
+.legenda span{display:inline-flex;align-items:center;gap:6px}.legenda .mini{width:20px;height:18px}
+.contoh{display:inline-block;width:14px;height:14px;border-radius:4px}
+.kartu{border:1px solid var(--garis);border-radius:16px;background:var(--putih);overflow:hidden;margin-bottom:16px}
+.minggu{padding:10px 16px;background:var(--isian);font-size:13px;font-weight:600;color:var(--teks-2)}
+.hari{display:grid;grid-template-columns:1fr 132px 132px;gap:8px;align-items:center;padding:8px 16px;border-top:1px solid var(--pemisah)}
+.hari .tgl b{display:block;font-size:15px}.hari .tgl small{font-size:12px;color:var(--teks-2)}.hari .tgl small.libur{color:var(--merah)}
+.slot{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;min-height:48px;padding:6px 10px;border-radius:12px;border:1px solid var(--garis);background:var(--putih);text-align:left;cursor:pointer;transition:background-color 160ms ease,border-color 160ms ease}
+.slot small{font-size:12px;color:var(--teks-2)}.slot b{font-size:14px}
+.slot.jaga{background:var(--utama);border-color:var(--utama);color:#fff}.slot.jaga small{color:inherit;opacity:.85}
+.slot.kosong{border-style:dashed}.slot.kosong:hover{border-color:var(--utama);background:var(--utama-tipis)}
+.slot.diminta{background:var(--kuning-tipis);border-color:transparent;cursor:default}.slot.diminta b{color:var(--kuning)}
+.slot[disabled]{cursor:default}.slot.lewat,.slot.jagaGanti{opacity:.6}
+.slot.jaga:hover:not([disabled]){background:var(--utama-tua)}
+.kal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.kal-h{font-size:13px;font-weight:600;color:var(--teks-2);padding:8px;border-bottom:1px solid var(--pemisah);text-align:center}.kal-h.mg{color:var(--merah)}
+.kal-sel{min-height:72px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 4px;border:0;border-right:1px solid var(--pemisah);border-bottom:1px solid var(--pemisah);background:var(--putih);cursor:pointer;transition:background-color 150ms ease}
+.kal-sel:nth-child(7n){border-right:0}.kal-sel:hover:not([disabled]){background:var(--utama-tipis)}
+.kal-sel .n{font-size:14px;font-weight:600}.kal-sel.mg .n{color:var(--merah)}.kal-sel.luar{background:var(--isian);cursor:default}.kal-sel.luar .n{color:var(--redup)}
+.kal-sel.mati{cursor:default}.kal-sel.mati .n{color:var(--redup)}.kal-sel small.libur{font-size:11px;color:var(--merah)}
+.dua{display:flex;gap:4px}.mini{display:inline-grid;place-items:center;width:22px;height:20px;border-radius:5px;font-style:normal;font-size:11px;font-weight:700;border:1px solid var(--garis);color:var(--teks-2)}
+.mini.jaga{background:var(--utama);border-color:var(--utama);color:#fff}.mini.jagaGanti{background:var(--utama-tipis);border-color:var(--utama-tipis);color:var(--utama)}
+.mini.kosong{border-style:dashed}.mini.diminta{background:var(--kuning-tipis);border-color:var(--kuning);color:var(--kuning)}.mini.lewat{opacity:.4}
+.dua-slot{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pesan{padding:12px 16px;border-radius:12px;background:var(--utama-tipis);font-size:14px;margin:12px 0}
+.pesan.galat{background:#FDF0F0;color:#B91C1C}
+dialog{border:0;border-radius:16px;padding:0;max-width:min(460px,calc(100vw - 32px));width:100%;background:var(--putih);color:var(--teks);box-shadow:0 12px 40px rgba(15,39,66,.28)}
+dialog::backdrop{background:rgba(15,39,66,.45)}
+dialog[open]{animation:masuk 200ms ease-out both}
+@keyframes masuk{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.dk{padding:16px 20px;border-bottom:1px solid var(--pemisah);font-weight:700;font-size:18px}
+.di{padding:16px 20px;display:flex;flex-direction:column;gap:12px}
+.dkk{display:flex;justify-content:flex-end;gap:8px;padding:12px 20px;border-top:1px solid var(--pemisah)}
+label{display:block;font-size:13px;font-weight:600;color:var(--teks-2);margin-bottom:4px}
+input,textarea{width:100%;padding:8px 10px;border:1px solid var(--garis);border-radius:8px;background:var(--isian)}
+.tb{border-radius:8px;font-weight:600;font-size:14px;padding:8px 14px;cursor:pointer;border:1px solid var(--garis);background:var(--putih)}
+.tb.utama{background:var(--utama);border-color:var(--utama);color:#fff}
+.tb:disabled{opacity:.6;cursor:default}
+.ket{font-size:13px;color:var(--teks-2)}
+@media (max-width:480px){.hari{grid-template-columns:1fr 1fr;padding:10px 12px}.hari .tgl{grid-column:1/-1;display:flex;gap:8px;align-items:baseline}.hari .tgl b{display:inline}}
+@media (prefers-reduced-motion:reduce){dialog[open]{animation:none}}
+</style>
+</head>
+<body>
+<header><div class="dalam"><h1 id="judul">Jadwal jaga</h1><p class="sub" id="sub">Memuat…</p></div></header>
+<main class="dalam" id="isi" aria-live="polite"></main>
+<dialog id="dlg" aria-labelledby="dlgJudul"><form method="dialog" id="dlgForm"></form></dialog>
+<script>
+const CFG = /*CFG*/{ mode: 'pwa' }/*CFG*/;
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const BLN = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'], HARI = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+const hariDari = t => new Date(t + 'T00:00:00Z').getUTCDay();
+const tgl = t => HARI[hariDari(t)] + ', ' + (+t.slice(8)) + ' ' + BLN[+t.slice(5, 7) - 1];
+const simpan = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+const baca = k => { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } };
+const q = new URLSearchParams(location.hash.slice(1));
+let A = CFG.mode === 'gas' ? (CFG.bagi ? { b: CFG.bagi } : null) : q.get('b') && q.get('u') ? { b: q.get('b'), u: q.get('u') } : baca('jasaipb.teman');
+if (CFG.mode !== 'gas' && q.get('b')) { simpan('jasaipb.teman', A); }
+function gasRun(fn, ...a) { return new Promise((ok, no) => google.script.run.withSuccessHandler(ok).withFailureHandler(no)[fn](...a)); }
+let D = null;
+const SLOT = {
+  jaga: ['Jaga', 'ketuk untuk mengambil'], jagaGanti: ['Jaga', 'menggantikan dokter lain'], kosong: ['Kosong', 'ketuk untuk minta digantikan'],
+  diminta: ['Menunggu jawaban', 'sudah ada permintaan'], lewat: ['Sudah lewat', ''],
+};
+async function muat() {
+  if (!A) { $('sub').textContent = ''; $('isi').innerHTML = '<div class="pesan galat">Tautan tidak lengkap. Minta tautan jadwal ke pemiliknya.</div>'; return; }
+  try {
+    const j = CFG.mode === 'gas' ? await gasRun('temanDataRun', A.b) : await (await fetch(A.u + '?' + new URLSearchParams({ aksi: 'teman', bagi: A.b }))).json();
+    if (!j.ok) throw new Error(j.pesan);
+    D = j; gambar();
+  } catch (e) { $('isi').innerHTML = `<div class="pesan galat">${esc(e.message || 'Gagal memuat jadwal.')}</div>`; $('sub').textContent = ''; }
+}
+const BULAN = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+const geser = (t, n) => { const d = new Date(t + 'T00:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+const bisa = st => st === 'jaga' || st === 'kosong';
+const MINI = { jaga: 'jaga', jagaGanti: 'jaga', kosong: 'kosong', diminta: 'tunggu', lewat: '' };
+function gambar() {
+  $('judul').textContent = 'Jadwal jaga ' + D.nama;
+  document.title = 'Jadwal jaga ' + D.nama;
+  $('sub').textContent = 'Klinik IPB · Pagi 08.00–14.00 (Jumat 09.00), Siang 14.00–20.00 · pilih tanggal untuk tukar shift';
+  let html = `<div class="legenda"><span><i class="mini jaga">P</i>${esc(D.nama)} jaga — bisa diambil</span><span><i class="mini kosong">S</i>kosong — bisa minta digantikan</span><span><i class="mini diminta">P</i>menunggu jawaban</span></div>`;
+  if (!D.hari.length) { $('isi').innerHTML = html + '<div class="pesan">Belum ada jadwal yang dibagikan.</div>'; return; }
+  const peta = {}; D.hari.forEach(h => { peta[h.t] = h; });
+  const awal = D.hari[0].t, akhir = D.hari[D.hari.length - 1].t;
+  for (let bln = awal.slice(0, 7); bln <= akhir.slice(0, 7);) {
+    const t1 = bln + '-01', [y, m] = bln.split('-').map(Number), tAkhir = geser(m === 12 ? (y + 1) + '-01-01' : y + '-' + String(m + 1).padStart(2, '0') + '-01', -1);
+    html += `<section class="kartu"><div class="minggu">${BULAN[m - 1]} ${y}</div><div class="kal">` + ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'].map((x, i) => `<div class="kal-h${i === 6 ? ' mg' : ''}">${x}</div>`).join('');
+    const mulai = t1 < awal ? awal : t1, ujung = tAkhir > akhir ? akhir : tAkhir;
+    for (let t = geser(mulai, -((hariDari(mulai) + 6) % 7)); t <= geser(ujung, (7 - hariDari(ujung)) % 7); t = geser(t, 1)) {
+      const h = t.slice(0, 7) === bln ? peta[t] : null, dalam = t.slice(0, 7) === bln && t >= awal && t <= akhir;
+      if (!h) { html += `<div class="kal-sel luar${t.slice(0, 7) !== bln ? ' lain' : ''}${hariDari(t) === 0 ? ' mg' : ''}"><span class="n">${dalam || (t.slice(0, 7) === bln && hariDari(t) === 0) ? +t.slice(8) : ''}</span></div>`; continue; }
+      const aktif = bisa(h.pagi) || bisa(h.siang), lbl = s => (SLOT[s] || [''])[0];
+      html += `<button type="button" class="kal-sel${aktif ? '' : ' mati'}" data-t="${t}"${aktif ? '' : ' disabled'} aria-label="${tgl(t)}${h.libur ? ', ' + esc(h.libur) : ''}: pagi ${lbl(h.pagi)}, siang ${lbl(h.siang)}">` +
+        `<span class="n">${+t.slice(8)}</span><span class="dua"><i class="mini ${h.pagi}">P</i><i class="mini ${h.siang}">S</i></span>${h.libur ? '<small class="libur">libur</small>' : ''}</button>`;
+    }
+    html += '</div></section>';
+    bln = m === 12 ? (y + 1) + '-01' : y + '-' + String(m + 1).padStart(2, '0');
+  }
+  html += '<p class="ket">Permintaan dikirim ke pemilik jadwal dan baru berlaku setelah ia menyetujui. Halaman ini tidak menampilkan data lain.</p>';
+  $('isi').innerHTML = html;
+  document.querySelectorAll('.kal-sel[data-t]:not([disabled])').forEach(b => b.onclick = () => pilihHari(peta[b.dataset.t]));
+}
+function pilihHari(h) {
+  const slot = (shift, st) => { const [l, k] = SLOT[st] || ['', '']; return `<button type="button" class="slot ${st}" data-shift="${shift}" data-st="${st}"${bisa(st) ? '' : ' disabled'}><small>${shift}</small><b>${l}</b>${k ? `<small>${k}</small>` : ''}</button>`; };
+  $('dlgForm').innerHTML = `<div class="dk" id="dlgJudul">${tgl(h.t)}${h.libur ? ` <small class="ket">· ${esc(h.libur)}</small>` : ''}</div><div class="di"><p class="ket" style="margin:0">Pilih shift yang ingin ditukar.</p><div class="dua-slot">${slot('Pagi', h.pagi)}${slot('Siang', h.siang)}</div></div><div class="dkk"><button class="tb" value="batal">Batal</button></div>`;
+  $('dlg').showModal();
+  $('dlgForm').querySelectorAll('.slot:not([disabled])').forEach(b => b.onclick = () => { $('dlg').close(); dialog(h.t, b.dataset.shift, b.dataset.st); });
+}
+function dialog(t, shift, st) {
+  const ambil = st === 'jaga', nama = baca('jasaipb.nama') || '';
+  $('dlgForm').innerHTML = `<div class="dk" id="dlgJudul">${ambil ? 'Ambil shift' : 'Minta digantikan'}</div><div class="di">
+    <p style="margin:0">${ambil ? `Anda mengambil shift <b>${shift.toLowerCase()} ${tgl(t)}</b> milik ${esc(D.nama)} (ia digantikan Anda).` : `Anda meminta ${esc(D.nama)} <b>menggantikan shift ${shift.toLowerCase()} Anda, ${tgl(t)}</b>.`}</p>
+    <div><label for="nm">Nama Anda</label><input id="nm" value="${esc(nama)}" placeholder="mis. dr. Budi" maxlength="60" autocomplete="name" required></div>
+    <div><label for="ct">Catatan (tidak wajib)</label><textarea id="ct" rows="2" maxlength="200" placeholder="mis. ada acara keluarga"></textarea></div>
+    <p class="ket" id="pk" style="margin:0"></p></div>
+    <div class="dkk"><button class="tb" value="batal">Batal</button><button class="tb utama" type="button" id="kirim">Kirim permintaan</button></div>`;
+  $('dlg').showModal();
+  $('kirim').onclick = async () => {
+    const nm = $('nm').value.trim(); if (nm.length < 3) { $('pk').textContent = 'Tulis nama Anda.'; $('nm').focus(); return; }
+    simpan('jasaipb.nama', nm); $('kirim').disabled = true; $('pk').textContent = 'Mengirim…';
+    try {
+      const body = { aksi: 'teman.minta', bagi: A.b, jenis: ambil ? 'ambil' : 'gantikan', t, shift, nama: nm, catatan: $('ct').value };
+      const j = CFG.mode === 'gas' ? await gasRun('temanMintaRun', body) : await (await fetch(A.u, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body) })).json();
+      if (!j.ok) throw new Error(j.pesan);
+      $('dlg').close(); await muat(); $('isi').insertAdjacentHTML('afterbegin', `<div class="pesan">${esc(j.pesan)}</div>`);
+    } catch (e) { $('pk').textContent = 'Gagal: ' + (e.message || e); $('kirim').disabled = false; }
+  };
+}
+muat();
+</script>
+</body>
+</html>
