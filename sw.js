@@ -1,5 +1,5 @@
-// Service worker Jasa IPB (v202611141527): kerangka aplikasi tersedia offline; data selalu diambil langsung dari Sheet (tidak di-cache di sini).
-const CACHE = 'jasaipb-v202611141527';
+// Service worker Jasa IPB (v202611141604): kerangka aplikasi tersedia offline; data selalu diambil langsung dari Sheet (tidak di-cache di sini).
+const CACHE = 'jasaipb-v202611141604';
 const KERANGKA = ['./', 'index.html', 'teman.html', 'manifest.webmanifest', 'ikon-192.png', 'ikon-512.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(KERANGKA)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(k => Promise.all(k.filter(x => x !== CACHE).map(x => caches.delete(x)))).then(() => self.clients.claim())); });

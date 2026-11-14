@@ -185,7 +185,7 @@ label.lbl{display:block;font-size:13px;font-weight:600;color:var(--teks-2);margi
 .kepala-kartu{margin-bottom:4px}
 .grafik{display:flex;gap:12px;align-items:flex-end;height:150px;border-bottom:0}
 .batang{flex:1;max-width:96px}.batang i{max-width:none;border-radius:4px 4px 0 0}.batang small{font-size:12px;color:var(--teks-2)}.batang.ini small{color:var(--teks);font-weight:600}
-.strip4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:12px 16px;margin-bottom:16px;gap:8px}.strip4 b{font-size:20px}
+.strip4{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:12px 16px;margin-bottom:16px;gap:8px}.strip4 b{font-size:20px}
 .daftar{overflow:hidden}.daftar-kep{display:flex;justify-content:space-between;padding:12px 16px}
 .hr{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:12px 16px;border-top:1px solid var(--pemisah)}
 .hr .tg{font-size:16px;font-weight:600}.hr .rp{font-size:16px;font-weight:700;text-align:right}.hr .r{text-align:right}
@@ -450,8 +450,8 @@ function vDash() {
     shift = `<button class="kartu shift" data-aksi="keJadwal">${IK.jadwal}<span class="isi-shift"><span class="ket">Shift berikutnya · ${jam(b.mulai)}</span><b>${tglPendek(b.t)} · ${esc(kode.map(k => k.kode.replace(/^Gantikan /, '')).join(' + '))}</b>${ganti.length ? `<span class="ket">Gantikan ${esc(ganti.join(' · '))}</span>` : ''}</span>${IK.kanan}</button>`;
   }
   const baris = (a, q, v, kls) => `<div class="br num${kls ? ' ' + kls : ''}"><span>${a}</span><span class="q">${q}</span><span class="rp">${v}</span></div>`;
-  const rinci = baris('Kehadiran', s.hadir + ' ×', rp(s.jHadir)) + baris('MCU', n0(s.mcu) || '0', rp(s.jMcu)) + baris('Poli pagi', n0(s.pagi) || '0', rp(s.jPagi))
-    + baris('IGD / tindakan', n0(s.igd) || '0', rp(s.jIgd)) + baris('Poli siang', n0(s.siang) || '0', rp(s.jSiang)) + baris('Kotor', '', rp(s.kotor))
+  const rinci = baris('Kehadiran', s.hadir + ' ×', rp(s.jHadir)) + baris('Poli pagi', n0(s.pagi) || '0', rp(s.jPagi)) + baris('IGD / tindakan', n0(s.igd) || '0', rp(s.jIgd))
+    + baris('Poli siang', n0(s.siang) || '0', rp(s.jSiang)) + baris('MCU', n0(s.mcu) || '0', rp(s.jMcu)) + baris('Telemedisin', n0(s.tele) || '0', rp(s.jTele)) + baris('Kotor', '', rp(s.kotor))
     + baris('PPh', '', '– ' + rp(s.pph), 'redup') + baris('Bersih', '', rp(s.bersih), 'tebal')
     + (s.eventN ? baris('Event', s.eventN, rp(ev)) + baris('Total diterima', '', rp(terima), 'tebal aksen') : '');
   const G = D.grafik.slice(Math.max(0, D.grafik.findIndex(g => g.terima > 0))), maks = Math.max(1, ...G.map(g => g.terima));
@@ -575,11 +575,11 @@ async function simpanKotak(row) {
 
 function vHarian() {
   const jp = judulPeriode(), s = D.ringkas;
-  const bag = h => [h.pagi && h.pagi + ' pagi', h.siang && h.siang + ' siang', h.igd && h.igd + ' IGD', h.mcu && h.mcu + ' MCU'].filter(Boolean).join(' · ');
+  const bag = h => [h.pagi && h.pagi + ' pagi', h.igd && h.igd + ' IGD', h.siang && h.siang + ' siang', h.mcu && h.mcu + ' MCU', h.tele && h.tele + ' tele'].filter(Boolean).join(' · ');
   const baris = D.harian.slice().reverse().map(h => `<div class="hr num"><span class="tg">${tglPendek(h.t)}</span><span class="rp">${rp(h.bersih)}</span>
     <span class="ket">${h.hadir} hadir${bag(h) ? ' · ' + bag(h) : ''}${h.sumber && h.sumber !== 'Scan C-CARE' ? ' · ' + esc(h.sumber) : ''}</span><span class="ket r">${n0(h.total) || 0} pasien</span></div>`).join('');
   return kepalaHalaman('Catatan · ' + BULAN[+D.periode.awal.slice(5, 7) - 1], jp.sub, tautSheet(D.gid.data, 'Tambah data')) +
-    `<div class="kartu strip4 num"><div><span class="l">Pagi</span><b>${n0(s.pagi) || 0}</b></div><div><span class="l">Siang</span><b>${n0(s.siang) || 0}</b></div><div><span class="l">IGD</span><b>${n0(s.igd) || 0}</b></div><div><span class="l">MCU</span><b>${n0(s.mcu) || 0}</b></div></div>
+    `<div class="kartu strip4 num"><div><span class="l">Pagi</span><b>${n0(s.pagi) || 0}</b></div><div><span class="l">IGD</span><b>${n0(s.igd) || 0}</b></div><div><span class="l">Siang</span><b>${n0(s.siang) || 0}</b></div><div><span class="l">MCU</span><b>${n0(s.mcu) || 0}</b></div><div><span class="l">Tele</span><b>${n0(s.tele) || 0}</b></div></div>
     <section class="kartu daftar">${D.harian.length ? `<div class="daftar-kep ket"><span>${D.harian.length} hari jaga · terbaru di atas</span><span>bersih</span></div>${baris}
       <div class="hr num jumlah"><span class="tg">Jumlah</span><span class="rp">${rp(s.bersih)}</span><span class="ket">${s.hadir} hadir · kotor ${rp(s.kotor)} · PPh ${rp(s.pph)}</span><span class="ket r">${n0(s.total) || 0} pasien</span></div>`
       : '<div class="kosong-isi">Belum ada hari jaga tercatat di periode ini.</div>'}</section>`;
@@ -617,7 +617,7 @@ function vLain() {
   const bul = L.map(x => `<tr${x.awal === D.periode.awal ? ' class="ini"' : ''}><td class="k">${BULAN[+x.awal.slice(5, 7) - 1]}</td><td class="num">${x.hari || '–'}</td><td class="num">${x.hari ? n0(x.total) : '–'}</td><td class="num">${x.hari ? rp(x.bersih + (x.eventUang || 0)) : '–'}</td></tr>`).join('');
   const pct = v => (v * 100).toLocaleString('id-ID', { maximumFractionDigits: 1 }) + '%';
   const tk = D.tarif[D.tarif.length - 1];
-  const tarif = D.tarif.slice().reverse().map(x => `<tr><td class="k">${tglPanjang(x.mulai)}</td><td class="num">${rp(x.hadir)}</td><td class="num">${rp(x.pagi)}</td><td class="num">${rp(x.siang)}</td><td class="num">${rp(x.igd)}</td><td class="num">${rp(x.mcu)}</td><td class="num">${pct(x.pph)}</td></tr>`).join('');
+  const tarif = D.tarif.slice().reverse().map(x => `<tr><td class="k">${tglPanjang(x.mulai)}</td><td class="num">${rp(x.hadir)}</td><td class="num">${rp(x.pagi)}</td><td class="num">${rp(x.igd)}</td><td class="num">${rp(x.siang)}</td><td class="num">${rp(x.mcu)}</td><td class="num">${rp(x.tele)}</td><td class="num">${pct(x.pph)}</td></tr>`).join('');
   const libur = D.libur.map(x => `<tr><td class="k">${HARI[hariDari(x.t)]}, ${tglPanjang(x.t)}</td><td class="k">${esc(x.ket)}</td></tr>`).join('');
   const panah = `<span class="chev">${IK.kanan}</span>`;
   return kepalaHalaman('Lainnya', D.nama + ' · ' + D.tempat, '', true) + `
@@ -627,8 +627,8 @@ function vLain() {
     <tfoot><tr><td class="k">Jumlah</td><td class="num">${t.hari}</td><td class="num">${n0(t.total)}</td><td class="num">${rp(t.terima)}</td></tr></tfoot></table></div>
     <p class="ket" style="margin:0;padding:8px 16px 12px">Diterima = bersih setelah PPh + uang event. <a href="${esc(D.url)}#gid=${D.gid.bulanan}" target="_blank" rel="noopener">Rincian di Sheet</a></p></section>
   <section class="kartu menu-lain"><h2 class="pad-kep">Pengaturan</h2>
-    <details><summary><span>Tarif jasa${tk ? `<small>${rp(tk.hadir)} hadir · ${rp(tk.pagi)} poli · ${rp(tk.igd)} IGD · ${rp(tk.mcu)} MCU</small>` : ''}</span>${panah}</summary>
-      <div class="tabel-bungkus"><table><thead><tr><th class="k">Berlaku mulai</th><th>Hadir</th><th>Pagi</th><th>Siang</th><th>IGD</th><th>MCU</th><th>PPh</th></tr></thead><tbody>${tarif}</tbody></table></div></details>
+    <details><summary><span>Tarif jasa${tk ? `<small>${rp(tk.hadir)} hadir · ${rp(tk.pagi)} poli · ${rp(tk.igd)} IGD · ${rp(tk.mcu)} MCU · ${rp(tk.tele)} tele</small>` : ''}</span>${panah}</summary>
+      <div class="tabel-bungkus"><table><thead><tr><th class="k">Berlaku mulai</th><th>Hadir</th><th>Pagi</th><th>IGD</th><th>Siang</th><th>MCU</th><th>Tele</th><th>PPh</th></tr></thead><tbody>${tarif}</tbody></table></div></details>
     <details><summary><span>Tanggal merah ${D.tahun}<small>${D.libur.length} hari · jasa shift tidak dihitung</small></span>${panah}</summary>
       <div class="tabel-bungkus"><table><tbody>${libur || '<tr><td class="k ket">Tidak ada.</td></tr>'}</tbody></table></div></details>
     <button class="baris-menu" data-aksi="bagi"><span>Bagikan jadwal ke teman</span>${panah}</button>
