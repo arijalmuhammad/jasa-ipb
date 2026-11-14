@@ -93,6 +93,9 @@ tr.ini td{background:var(--utama-tipis)}
 .masuk{animation:masuk 220ms ease-out both}
 @keyframes masuk{from{opacity:.0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .memuat{opacity:.55;transition:opacity 160ms ease}
+.segaran{position:fixed;left:0;right:0;top:0;height:3px;z-index:30;background:linear-gradient(90deg,transparent,var(--utama),transparent);background-size:40% 100%;background-repeat:no-repeat;animation:segar 1.1s linear infinite}
+.segaran[hidden]{display:none}@keyframes segar{from{background-position:-40% 0}to{background-position:140% 0}}
+@media (prefers-reduced-motion:reduce){.segaran{animation:none;background:var(--utama);opacity:.5}}
 @media (prefers-reduced-motion:reduce){.masuk{animation:none}.batang i,.tab{transition:none}}
 @media (max-width:1100px){.merek small{display:none}.merek{flex:0 0 auto}.tab{padding:18px 9px 16px}}
 @media (max-width:640px){.kepala{padding:0 16px;flex-wrap:wrap}.merek{flex:1 1 100%;padding-bottom:0}.merek small{display:block}.strip{grid-template-columns:repeat(3,minmax(0,1fr))}.strip>div:first-child{grid-column:1/-1}.strip>div{padding:12px 16px}main{padding:16px}.tab{padding:14px 10px 12px}.strip .v{font-size:24px}.sel{height:42px}.sel .s{display:none}.grafik{gap:4px}.sumbu{gap:4px}.batang span{font-size:10px}
@@ -151,6 +154,79 @@ label.lbl{display:block;font-size:13px;font-weight:600;color:var(--teks-2);margi
 @media (max-width:899px){.jd-tata{grid-template-columns:1fr}.jd-panel{display:none}.kal-sel{min-height:72px}}
 @media (max-width:640px){.aksi-kepala .teks-tb{display:none}.aksi-kepala{margin-left:auto}.merek{flex:1 1 0;min-width:0}.kepala{flex-wrap:wrap}.strip .k{font-size:12px}nav{flex:1 1 100%;order:3}
   .kal-sel{min-height:60px;padding:4px 2px;gap:2px}.kal-h{padding:6px 2px;text-align:center}.kal-sel .n{padding-left:2px}.ch{font-size:11px;padding:0 2px;border-radius:4px;letter-spacing:-.1px;white-space:nowrap;overflow:hidden}.ch .pjg{display:none}.ch .pdk{display:inline}.kal-sel .n .pjg{display:none}.leg-jd{font-size:12px}}
+
+/* ===== arah A: strip padat (v4.7) ===== */
+.tab{display:inline-flex;align-items:center;gap:6px}.tab svg{width:18px;height:18px;flex:none}
+.baris-judul{align-items:center;margin-bottom:16px}
+.judul-per{display:flex;align-items:center;gap:8px;min-width:0;flex:1 1 320px}
+.judul-teks{min-width:0}
+.panah{width:44px;height:44px;flex:none;display:grid;place-items:center;border:1px solid var(--garis);border-radius:8px;background:var(--putih);color:var(--teks);cursor:pointer;transition:background-color 160ms ease}
+.panah:hover{background:var(--isian)}.panah svg{width:18px;height:18px}
+.status{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--teks-2);min-height:44px;margin:-8px 0 8px}
+.status svg{width:16px;height:16px;flex:none}.status span{flex:1}
+.status.ok{color:var(--hijau)}.status.awas{color:var(--kuning)}
+.tb-teks{border:0;background:none;color:var(--utama);font-weight:600;font-size:13px;min-height:44px;padding:0 4px;cursor:pointer}
+.ringkas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.ringkas>*{grid-column:1}.ringkas>.rinci-kartu{grid-column:2;grid-row:1 / span 3}
+.pahlawan .l,.tiga .l,.strip4 .l{display:block;font-size:13px;font-weight:600;color:var(--teks-2)}
+.pahlawan .v{font-size:34px;font-weight:700;line-height:1.15;margin-top:2px}
+.bilah{height:8px;border-radius:4px;background:var(--pemisah);overflow:hidden;margin-top:12px}.bilah i{display:block;height:8px;background:var(--utama);transition:width 220ms ease-out}
+.banding{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--teks-2);margin-top:6px}
+.tiga{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:16px;border-top:1px solid var(--pemisah)}
+.tiga>div{padding:12px 0 0 12px;border-left:1px solid var(--pemisah)}.tiga>div:first-child{padding-left:0;border-left:0}
+.tiga b{font-size:22px}.tiga small{font-size:13px;font-weight:400;color:var(--teks-2)}
+.kerangka .tiga{border:0;gap:12px}.kerangka .tiga>.sk{margin:0}
+.shift{display:flex;align-items:center;gap:12px;width:100%;padding:12px 16px;border-radius:12px;text-align:left;cursor:pointer;transition:background-color 160ms ease}
+.shift:hover{background:var(--isian)}.shift>svg{width:22px;height:22px;flex:none;color:var(--utama)}.shift>svg:last-child{width:18px;height:18px;color:var(--teks-2)}
+.isi-shift{flex:1;min-width:0;display:flex;flex-direction:column}.isi-shift b{font-size:16px}
+.br{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:baseline;padding:10px 0;border-top:1px solid var(--pemisah);font-size:15px}
+.br .q{color:var(--teks-2);text-align:right;min-width:44px}.br .rp{text-align:right;min-width:112px}
+.br.redup{color:var(--teks-2)}.br.tebal{font-weight:700}.br.aksen{color:var(--utama)}
+.kepala-kartu{margin-bottom:4px}
+.grafik{display:flex;gap:12px;align-items:flex-end;height:150px;border-bottom:0}
+.batang{flex:1;max-width:96px}.batang i{max-width:none;border-radius:4px 4px 0 0}.batang small{font-size:12px;color:var(--teks-2)}.batang.ini small{color:var(--teks);font-weight:600}
+.strip4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:12px 16px;margin-bottom:16px;gap:8px}.strip4 b{font-size:20px}
+.daftar{overflow:hidden}.daftar-kep{display:flex;justify-content:space-between;padding:12px 16px}
+.hr{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:12px 16px;border-top:1px solid var(--pemisah)}
+.hr .tg{font-size:16px;font-weight:600}.hr .rp{font-size:16px;font-weight:700;text-align:right}.hr .r{text-align:right}
+.hr.jumlah{background:var(--isian)}
+.tumpuk{display:flex;flex-direction:column;gap:16px}
+.alat-pasien{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}.alat-pasien .cari{max-width:none;min-height:44px;font-size:16px}
+.chips button{min-height:36px}
+.grup{overflow:hidden}.grup-kep{display:flex;justify-content:space-between;gap:8px;padding:10px 16px;background:var(--isian)}
+.ps{display:grid;grid-template-columns:28px 1fr auto;gap:8px;align-items:center;padding:10px 16px;border-top:1px solid var(--pemisah)}
+.ps .no{color:var(--teks-2);text-align:right}
+.pad-kep{padding:12px 16px}
+.menu-lain h2{margin:0}
+.menu-lain summary,.baris-menu{display:flex;align-items:center;gap:12px;width:100%;min-height:52px;padding:8px 16px;border:0;border-top:1px solid var(--pemisah);background:none;color:var(--teks);font-size:16px;text-align:left;text-decoration:none;cursor:pointer;list-style:none;transition:background-color 160ms ease}
+.menu-lain summary::-webkit-details-marker{display:none}
+.menu-lain summary:hover,.baris-menu:hover{background:var(--isian)}
+.menu-lain summary>span:first-child,.baris-menu>span:first-child{flex:1;min-width:0}
+.menu-lain small{display:block;font-size:13px;color:var(--teks-2)}
+.chev{display:grid;color:var(--teks-2)}.chev svg{width:18px;height:18px;transition:transform 180ms ease}
+details[open] .chev svg{transform:rotate(90deg)}
+.baris-menu.bahaya{color:var(--merah)}
+.sk{display:block;background:var(--pemisah);border-radius:6px;margin:0 0 10px;animation:sk 1.2s ease-in-out infinite alternate}
+@keyframes sk{from{opacity:1}to{opacity:.55}}
+.kerangka{display:flex;flex-direction:column;gap:16px}
+@media (prefers-reduced-motion:reduce){.sk{animation:none}.bilah i,.chev svg{transition:none}}
+@media (max-width:899px){
+  .ringkas{grid-template-columns:1fr}.ringkas>.rinci-kartu{grid-column:1;grid-row:auto}
+  main{padding:16px 16px calc(96px + env(safe-area-inset-bottom))}
+  .aksi-kepala{display:none}
+  .kepala{padding:0 16px}.merek{flex:1 1 auto;padding:10px 0}
+  nav#tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--putih);border-top:1px solid var(--garis);padding:4px 4px calc(6px + env(safe-area-inset-bottom));flex:none;order:0;overflow:visible}
+  nav#tabs .tab{flex:1;flex-direction:column;gap:2px;padding:6px 0;min-height:52px;border-bottom:0;font-size:12px;position:relative}
+  nav#tabs .tab svg{width:22px;height:22px}
+  nav#tabs .tab:hover{background:none}
+  nav#tabs .lencana{position:absolute;top:2px;left:calc(50% + 6px);margin:0}
+  .toast{bottom:calc(84px + env(safe-area-inset-bottom))}
+  .baris-judul{flex-direction:column;align-items:stretch}
+  .judul-per{flex:1 1 auto}.judul-teks{flex:1;text-align:center}
+  .judul-teks h1{font-size:18px}.baris-judul .navper{justify-content:flex-end}
+  .baris-judul .navper{margin-top:-4px}.baris-judul .navper .tb{border:0;background:none;color:var(--utama);padding:0 4px;min-height:44px}
+}
+@media (max-width:640px){.kepala{flex-wrap:nowrap}.merek small{display:block}.br .rp{min-width:96px}.strip4 b{font-size:18px}}
 </style>
 </head>
 <body>
@@ -169,13 +245,14 @@ label.lbl{display:block;font-size:13px;font-weight:600;color:var(--teks-2);margi
     </div>
   </div>
 </header>
+<div id="segaran" class="segaran" hidden role="status" aria-label="Memperbarui data dari Sheet"></div>
 <main id="isi" aria-live="polite"></main>
 <dialog id="dlg" aria-labelledby="dlgJudul"><form method="dialog" id="dlgForm"></form></dialog>
 <div class="toast" id="toast" role="status" hidden></div>
 
 <script>
 const CFG = /*CFG*/{ mode: 'pwa' }/*CFG*/;
-const TAB = [['dash', 'Dashboard'], ['jadwal', 'Jadwal'], ['harian', 'Harian'], ['bulanan', 'Bulanan'], ['pasien', 'Pasien'], ['atur', 'Pengaturan']];
+const TAB = [['dash', 'Ringkas'], ['jadwal', 'Jadwal'], ['harian', 'Catatan'], ['pasien', 'Pasien'], ['lain', 'Lainnya']];
 const BLN = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
 const BULAN = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 const HARI = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
@@ -197,7 +274,15 @@ const IK = {
   ok: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>',
   putar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/></svg>',
   tutup: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+  dash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>',
+  jadwal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+  harian: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>',
+  pasien: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6M17 11a3 3 0 1 0 0-6M22 21c0-3-2-5-5-5"/></svg>',
+  lain: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>',
+  luar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
 };
+const selisihHari = (a, b) => Math.round((Date.parse(b + 'T00:00:00Z') - Date.parse(a + 'T00:00:00Z')) / 864e5);
+const jam = ms => new Date(ms).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Jakarta' });
 
 /* ---------- akun & jalur data: halaman Apps Script (google.script.run) atau aplikasi HP (fetch ke Web App) ---------- */
 const SIMPAN = 'jasaipb.akun';
@@ -218,13 +303,15 @@ let AKUN = bacaAkun();
 function gasRun(fn, ...a) { return new Promise((ok, no) => google.script.run.withSuccessHandler(ok).withFailureHandler(no)[fn](...a)); }
 async function jawab(p) { const j = await p; if (!j || !j.ok) throw new Error((j && j.pesan) || 'Gagal'); return j; }
 const api = {
-  dasbor: awal => jawab(CFG.mode === 'gas' ? gasRun('dasborRun', AKUN.k, awal || '')
-    : fetch(AKUN.u + '?' + new URLSearchParams({ aksi: 'dasbor', kunci: AKUN.k, awal: awal || '' })).then(r => r.json())),
+  dasbor: (awal, segar) => jawab(CFG.mode === 'gas' ? gasRun('dasborRun', AKUN.k, awal || '', !!segar)
+    : fetch(AKUN.u + '?' + new URLSearchParams({ aksi: 'dasbor', kunci: AKUN.k, awal: awal || '', segar: segar ? '1' : '', ringan: '1' })).then(r => r.json())),
+  pasien: awal => jawab(CFG.mode === 'gas' ? gasRun('pasienRun', AKUN.k, awal || '')
+    : fetch(AKUN.u + '?' + new URLSearchParams({ aksi: 'pasien', kunci: AKUN.k, awal: awal || '' })).then(r => r.json())),
   kirim: body => jawab(CFG.mode === 'gas' ? gasRun('pemilikRun', AKUN.k, body)
     : fetch(AKUN.u, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(Object.assign({ kunci: AKUN.k }, body)) }).then(r => r.json())),
 };
 
-let tab = 'dash', D = null, awalDipilih = '', offline = '';
+let tab = 'dash', D = null, awalDipilih = '', offline = '', diambil = 0, segar = false, fPasien = 'semua';
 const cache = {};
 let pasangPrompt = null;
 window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); pasangPrompt = e; if (D) gambar(); });
@@ -232,24 +319,29 @@ window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); pasang
 function toast(t) { const e = $('toast'); e.textContent = t; e.hidden = false; clearTimeout(toast.j); toast.j = setTimeout(() => { e.hidden = true; }, 3200); }
 function gambarTab() {
   const n = D ? D.permintaan.filter(x => x.status === 'Menunggu').length : 0;
-  $('tabs').innerHTML = TAB.map(([id, l]) => `<button class="tab" data-t="${id}"${id === tab ? ' aria-current="page"' : ''}>${l}${id === 'jadwal' && n ? `<span class="lencana" aria-label="${n} permintaan">${n}</span>` : ''}</button>`).join('');
-  $('tabs').querySelectorAll('.tab').forEach(b => b.onclick = () => { tab = b.dataset.t; gambarTab(); gambar(); b.scrollIntoView({ block: 'nearest', inline: 'nearest' }); });
+  $('tabs').innerHTML = TAB.map(([id, l]) => `<button class="tab" data-t="${id}"${id === tab ? ' aria-current="page"' : ''}>${IK[id]}<span>${l}</span>${id === 'jadwal' && n ? `<span class="lencana" aria-label="${n} permintaan">${n}</span>` : ''}</button>`).join('');
+  $('tabs').querySelectorAll('.tab').forEach(b => b.onclick = () => { tab = b.dataset.t; gambarTab(); gambar(); window.scrollTo(0, 0); });
 }
-async function muat(awal, diam) {
+async function muat(awal, diam, segar) {
   awalDipilih = awal || '';
+  const lokal = bacaLokal('jasaipb.cache.' + (awalDipilih || 'kini'));
   if (!diam && cache[awalDipilih]) { D = cache[awalDipilih]; gambarTab(); gambar(); }
+  else if (!diam && lokal && lokal.d && lokal.d.slot) { D = lokal.d; diambil = lokal.waktu; muat.lokal = lokal; gambarTab(); gambar(); }   // tampil seketika dari data terakhir, lalu diperbarui
   else if (!diam) $('isi').classList.add('memuat');
+  $('segaran').hidden = false; segar = true; perbaruiStatus();
   try {
-    const d = await api.dasbor(awalDipilih);
+    const d = await api.dasbor(awalDipilih, segar);
+    $('segaran').hidden = true; segar = false; muat.lokal = null;
+    if (D && D.periode && d.periode.awal === D.periode.awal && D.pasien) d.pasien = D.pasien;
     cache[awalDipilih] = d; if (!awalDipilih) cache[d.periode.awal] = d;
-    offline = ''; simpanLokal('jasaipb.cache.' + (awalDipilih || 'kini'), { waktu: Date.now(), d });
-    D = d; $('isi').classList.remove('memuat'); gambarTab(); gambar();
+    offline = ''; simpanLokal('jasaipb.cache.' + (awalDipilih || 'kini'), { waktu: Date.now(), d: Object.assign({}, d, { pasien: null }) });
+    D = d; diambil = Date.now(); $('isi').classList.remove('memuat'); gambarTab(); gambar();
     if (!cache[d.periode.lalu]) api.dasbor(d.periode.lalu).then(x => { cache[d.periode.lalu] = x; }).catch(() => {});
     jadwalkanCek();
   } catch (e) {
-    $('isi').classList.remove('memuat');
+    $('isi').classList.remove('memuat'); $('segaran').hidden = true; segar = false; perbaruiStatus();
     const c = bacaLokal('jasaipb.cache.' + (awalDipilih || 'kini'));
-    if (c && !D) { D = c.d; offline = new Date(c.waktu).toLocaleString('id-ID', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); gambarTab(); gambar(); return; }
+    if (c && (!D || (muat.lokal && muat.lokal.waktu === c.waktu))) { muat.lokal = null; D = c.d; offline = new Date(c.waktu).toLocaleString('id-ID', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); gambarTab(); gambar(); return; }
     if (D) { toast('Tidak tersambung: ' + (e.message || e)); return; }
     $('isi').innerHTML = `<div class="pesan galat">${IK.galat}<span>Data belum bisa dibaca: ${esc(e && e.message || e)}. Periksa internet, lalu muat ulang.</span></div>`;
   }
@@ -262,13 +354,13 @@ function jadwalkanCek() {
 }
 function judulPeriode() {
   const p = D.periode, [y, m] = p.awal.split('-').map(Number);
-  return { judul: BULAN[m - 1] + ' ' + y, rentang: tglPanjang(p.awal) + ' – ' + tglPanjang(p.akhir) };
+  const hariKe = p.berjalan ? ' · hari ke-' + (selisihHari(p.awal, D.hariIni) + 1) + ' dari ' + (selisihHari(p.awal, p.akhir) + 1) : '';
+  return { judul: BULAN[m - 1] + ' ' + y, rentang: tglPanjang(p.awal) + ' – ' + tglPanjang(p.akhir), sub: (+p.awal.slice(8)) + ' ' + BLN[m - 1] + ' – ' + (+p.akhir.slice(8)) + ' ' + BLN[+p.akhir.slice(5, 7) - 1] + hariKe };
 }
 function navPeriode() {
   const p = D.periode, [y, m] = p.awal.split('-').map(Number);
   const lalu = BLN[(m + 10) % 12], depan = BLN[m % 12];
-  return `<div class="navper"><button class="tb kedua" id="mundur" aria-label="Periode sebelumnya">${IK.kiri}${lalu}</button>
-    <button class="tb kedua" id="maju" aria-label="Periode berikutnya">${depan}${IK.kanan}</button></div>`;
+  return [`<button class="panah" id="mundur" aria-label="Periode sebelumnya (${lalu})" title="${lalu}">${IK.kiri}</button>`, `<button class="panah" id="maju" aria-label="Periode berikutnya (${depan})" title="${depan}">${IK.kanan}</button>`];
 }
 function pasangNav() {
   const p = D.periode, [y, m] = p.awal.split('-').map(Number), mulai = D.mulai;
@@ -281,19 +373,34 @@ const tautSheet = (gid, label) => `<a class="tb kedua" href="${esc(D.url)}#gid=$
 function gambar() {
   if (CFG.mode !== 'gas' && !AKUN) return vSetup();
   $('kepala').hidden = false;
-  if (!D) { $('isi').innerHTML = '<div class="kosong-isi">Memuat data dari Sheet…</div>'; return; }
+  if (!D) { $('isi').innerHTML = kerangka(); return; }
   $('nama').textContent = D.nama + ' · ' + D.tempat;
-  const f = { dash: vDash, jadwal: vJadwal, harian: vHarian, bulanan: vBulanan, pasien: vPasien, atur: vAtur }[tab];
+  const f = { dash: vDash, jadwal: vJadwal, harian: vHarian, pasien: vPasien, lain: vLain }[tab] || vDash;
   $('isi').innerHTML = `<div class="masuk">${pitaOffline()}${f()}</div>`;
   pasangNav();
-  const c = $('cariPasien'); if (c) c.oninput = () => { const q = c.value.toLowerCase(); document.querySelectorAll('#tPasien tbody tr').forEach(tr => { tr.hidden = q && !tr.textContent.toLowerCase().includes(q); }); };
+  const c = $('cariPasien'); if (c) c.oninput = () => cariPasien(c.value);
   pasangAksi();
 }
-function kepalaHalaman(judul, sub, kanan) {
-  return `<div class="baris-judul"><div><h1>${judul}</h1><p class="sub">${sub}</p></div><div class="navper">${kanan || ''}</div></div>`;
+/* judul halaman: [‹] judul/sub [›] + aksi; panah hanya bila halaman berperiode */
+function kepalaHalaman(judul, sub, aksi, tanpaPeriode) {
+  const [kiri, kanan] = tanpaPeriode ? ['', ''] : navPeriode();
+  return `<div class="baris-judul"><div class="judul-per">${kiri}<div class="judul-teks"><h1>${judul}</h1><p class="sub">${sub}</p></div>${kanan}</div>${aksi ? `<div class="navper">${aksi}</div>` : ''}</div>`;
+}
+function statusData() {
+  if (offline) return `<div class="status awas" role="status">${IK.awas}<span>Tidak tersambung · data ${esc(offline)}</span><button class="tb-teks" data-aksi="muatUlang">Coba lagi</button></div>`;
+  if (segar) return `<div class="status" role="status">${IK.putar}<span>Memperbarui…</span></div>`;
+  return `<div class="status ok" role="status">${IK.ok}<span>Terbaru${diambil ? ' · diperbarui ' + jam(diambil) : ''}</span><button class="tb-teks" data-aksi="scan">Minta scan</button></div>`;
+}
+function perbaruiStatus() { const e = document.querySelector('.status'); if (e && D) { e.outerHTML = statusData(); pasangAksi(); } }
+function kerangka() {
+  const b = (w, h) => `<i class="sk" style="width:${w};height:${h}px"></i>`;
+  return `<div class="kerangka" aria-label="Mengambil data dari Sheet"><div class="status">${IK.putar}<span>Mengambil data dari Sheet…</span></div>
+    <section class="kartu pad">${b('120px', 12)}${b('220px', 34)}${b('100%', 8)}<div class="tiga">${b('100%', 40)}${b('100%', 40)}${b('100%', 40)}</div></section>
+    ${b('100%', 72)}<section class="kartu pad">${b('100px', 14)}${b('100%', 14)}${b('100%', 14)}${b('100%', 14)}</section>
+    <p class="ket" style="text-align:center">Hanya terlihat saat pertama kali. Berikutnya aplikasi langsung tampil dari data terakhir.</p></div>`;
 }
 function persen(a, b) { if (!b) return null; return Math.round((a - b) / b * 100); }
-const pitaOffline = () => offline ? `<div class="pita awas">${IK.awas}<span class="isi-pita">Tidak tersambung — menampilkan data terakhir (${esc(offline)}).</span><button class="tb kedua" data-aksi="muatUlang">Coba lagi</button></div>` : '';
+const pitaOffline = () => tab !== 'dash' && offline ? `<div class="pita awas">${IK.awas}<span class="isi-pita">Tidak tersambung — menampilkan data terakhir (${esc(offline)}).</span><button class="tb kedua" data-aksi="muatUlang">Coba lagi</button></div>` : '';
 
 /* ---------- pita di Dashboard: permintaan teman, status scan, pasang aplikasi ---------- */
 function pitaAtas() {
@@ -314,7 +421,10 @@ function pasangAksi() {
   document.querySelectorAll('[data-aksi]').forEach(b => b.onclick = async () => {
     const a = b.dataset.aksi;
     if (a === 'keJadwal') { tab = 'jadwal'; gambarTab(); gambar(); }
-    if (a === 'muatUlang') muat(awalDipilih);
+    if (a === 'muatUlang') muat(awalDipilih, false, true);
+    if (a === 'scan') $('tbScan').click();
+    if (a === 'bagi') $('tbBagi').click();
+    if (a === 'fp') { fPasien = b.dataset.f; gambar(); const c = $('cariPasien'); if (c && cariPasien.q) { c.value = cariPasien.q; cariPasien(cariPasien.q); } }
     if (a === 'pasang' && pasangPrompt) { pasangPrompt.prompt(); pasangPrompt = null; gambar(); }
     if (a === 'batalScan') { b.disabled = true; try { await api.kirim({ aksi: 'scan.batal' }); D.mintaScan = null; Object.keys(cache).forEach(k => cache[k].mintaScan = null); gambar(); } catch (e) { toast(e.message); b.disabled = false; } }
     if (a === 'keluar') { simpanLokal(SIMPAN, null); Object.keys(localStorage).filter(k => /^jasaipb\./.test(k)).forEach(k => simpanLokal(k, null)); AKUN = null; D = null; gambar(); }
@@ -328,52 +438,43 @@ function pasangAksi() {
 }
 
 function vDash() {
-  const s = D.ringkas, l = D.lalu, jp = judulPeriode();
-  const pb = persen(s.bersih, l.bersih), pp = persen(s.total, l.total);
-  const banding = (p) => p == null ? '<span class="k">belum ada pembanding</span>' : `<span class="k ${p >= 0 ? 'naik' : 'turun'}">${p >= 0 ? '▲' : '▼'} ${Math.abs(p)}% vs periode lalu</span>`;
-  const b = D.berikut;
-  const subJudul = jp.rentang + (b && D.periode.berjalan ? ' · shift berikutnya ' + HARI[hariDari(b.t)] + ' ' + b.t.slice(8) + '/' + b.t.slice(5, 7) + ', ' + new Date(b.mulai).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Jakarta' }) : '');
-  const jadwal = {}; D.jadwal.forEach(j => { (jadwal[j.t] = jadwal[j.t] || []).push(j.kode); });
-  const per = {}; D.harian.forEach(h => { per[h.t] = (per[h.t] || 0) + h.total; });
-  const libur = {}; D.libur.forEach(x => { libur[x.t] = x.ket; });
-  let sel = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'].map((x, i) => `<span class="dw${i === 6 ? ' mg' : ''}">${x}</span>`).join('');
-  const awal = D.periode.awal; for (let i = 0; i < (hariDari(awal) + 6) % 7; i++) sel += '<span class="sel kosong" aria-hidden="true"></span>';
-  for (let t = awal; t <= D.periode.akhir; t = geser(t, 1)) {
-    const n = per[t], jd = (jadwal[t] || []).filter(k => !/^Digantikan/.test(k)), mg = hariDari(t) === 0 || libur[t], depan = t > D.hariIni;
-    const kls = ['sel', n >= 65 ? 'l3' : n >= 33 ? 'l2' : n ? 'l1' : mg ? 'mg' : '', depan ? 'depan' : '', t === D.hariIni ? 'kini' : ''].join(' ');
-    const judul = tglPanjang(t) + (libur[t] ? ' · ' + libur[t] : '') + (n ? ' · ' + n + ' pasien' : '') + (jd.length ? ' · ' + jd.join(', ') : '');
-    sel += `<div class="${kls}" title="${esc(judul)}"><span class="d">${+t.slice(8)}</span>${n ? `<b class="num">${n}</b>` : jd.length && depan ? `<span class="s">${esc(jd.map(pendek).join(' + '))}</span>` : ''}</div>`;
+  const s = D.ringkas, l = D.lalu, jp = judulPeriode(), b = D.berikut;
+  const ev = s.eventUang || 0, terima = s.bersih + ev;
+  const pct = l.bersih ? Math.round(s.bersih / l.bersih * 100) : null, blnLalu = BULAN[+D.periode.lalu.slice(5, 7) - 1];
+  const banding = pct == null ? '<span>Belum ada pembanding</span>'
+    : `<span>${pct}% dari ${blnLalu}</span><span>${blnLalu} ${rp(l.bersih)}</span>`;
+  let shift = '';
+  if (b && D.periode.berjalan) {
+    const hari = D.jadwal.filter(j => j.t === b.t && !/^Digantikan|^Event/.test(j.kode)), kode = hari.length ? hari : [{ kode: b.kode, ket: '' }];
+    const ganti = kode.filter(k => /^Gantikan/.test(k.kode) && k.ket).map(k => k.ket);
+    shift = `<button class="kartu shift" data-aksi="keJadwal">${IK.jadwal}<span class="isi-shift"><span class="ket">Shift berikutnya · ${jam(b.mulai)}</span><b>${tglPendek(b.t)} · ${esc(kode.map(k => k.kode.replace(/^Gantikan /, '')).join(' + '))}</b>${ganti.length ? `<span class="ket">Gantikan ${esc(ganti.join(' · '))}</span>` : ''}</span>${IK.kanan}</button>`;
   }
-  const maks = Math.max(1, ...D.grafik.map(g => g.bersih));
-  const grafik = D.grafik.map((g, i) => { const m = +g.awal.slice(5, 7), v = (g.bersih / 1e6).toFixed(1).replace('.', ',');
-    return `<div class="batang${i === 11 ? ' ini' : ''}" title="${BULAN[m - 1]} ${g.awal.slice(0, 4)}: ${rp(g.bersih)} · ${g.total} pasien"><span class="num">${g.bersih ? v : ''}</span><i style="height:${Math.round(g.bersih / maks * 150)}px"></i></div>`; }).join('');
-  const sumbu = D.grafik.map(g => `<span>${BLN[+g.awal.slice(5, 7) - 1]}</span>`).join('');
-  const rinci = [['Kehadiran', s.hadir + ' ×', s.jHadir], ['Pasien poli pagi', n0(s.pagi) || '0', s.jPagi], ['Pasien poli siang', n0(s.siang) || '0', s.jSiang], ['Pasien IGD / tindakan', n0(s.igd) || '0', s.jIgd]]
-    .map(([a, b, c]) => `<span>${a}</span><span class="r num ket">${b}</span><span class="rp num">${rp(c)}</span>`).join('');
-  return kepalaHalaman(jp.judul, subJudul, navPeriode()) + pitaAtas() + `
-  <div class="kartu strip">
-    <div><div class="l">Pendapatan bersih</div><div class="v num">${rp(s.bersih)}</div>${banding(pb)}</div>
-    <div><div class="l">Total pasien</div><div class="v num">${n0(s.total) || '0'}</div>${banding(pp)}</div>
-    <div><div class="l">Hari jaga</div><div class="v num">${s.hari}</div><span class="k">${s.hadir} kehadiran</span></div>
-    <div><div class="l">Rata-rata pasien</div><div class="v num">${s.hari ? Math.round(s.total / s.hari) : 0}</div><span class="k">per hari jaga</span></div>
-  </div>
-  <div class="dua">
-    <section class="kartu pad"><div class="kepala-kartu"><h2>Rincian jasa</h2><span class="ket">jumlah × tarif</span></div>
-      <div class="rinci">${rinci}
-        <span>Pendapatan kotor</span><span></span><span class="rp num">${rp(s.kotor)}</span>
-        <span class="ket">Potongan PPh</span><span></span><span class="rp num ket">– ${rp(s.pph)}</span>
-        <span class="total">Pendapatan bersih</span><span class="total"></span><span class="total rp num">${rp(s.bersih)}</span>
-      </div>
-      <p class="ket" style="margin:12px 0 0">Akumulasi bersih ${D.tahun}: <b class="num" style="color:var(--teks)">${rp(D.akumulasi)}</b></p>
-    </section>
-    <section class="kartu pad"><div class="kepala-kartu"><h2>Kalender jaga</h2><span class="ket">angka = pasien</span></div>
-      <div class="kal">${sel}</div>
-      <div class="legenda"><span><i style="background:var(--c1)"></i>1–32</span><span><i style="background:var(--c2)"></i>33–64</span><span><i style="background:var(--c3)"></i>≥ 65</span><span><i style="background:var(--merah-tipis);border:1px solid var(--merah)"></i>Minggu / libur</span><span>garis putus = belum lewat</span></div>
-    </section>
-  </div>
-  <section class="kartu pad"><div class="kepala-kartu"><h2>Pendapatan bersih · 12 periode</h2><span class="ket">Rp juta · arahkan kursor untuk rincian</span></div>
-    <div class="grafik" role="img" aria-label="Pendapatan bersih 12 periode terakhir">${grafik}</div><div class="sumbu">${sumbu}</div>
-  </section>`;
+  const baris = (a, q, v, kls) => `<div class="br num${kls ? ' ' + kls : ''}"><span>${a}</span><span class="q">${q}</span><span class="rp">${v}</span></div>`;
+  const rinci = baris('Kehadiran', s.hadir + ' ×', rp(s.jHadir)) + baris('MCU', n0(s.mcu) || '0', rp(s.jMcu)) + baris('Poli pagi', n0(s.pagi) || '0', rp(s.jPagi))
+    + baris('IGD / tindakan', n0(s.igd) || '0', rp(s.jIgd)) + baris('Poli siang', n0(s.siang) || '0', rp(s.jSiang)) + baris('Kotor', '', rp(s.kotor))
+    + baris('PPh', '', '– ' + rp(s.pph), 'redup') + baris('Bersih', '', rp(s.bersih), 'tebal')
+    + (s.eventN ? baris('Event', s.eventN, rp(ev)) + baris('Total diterima', '', rp(terima), 'tebal aksen') : '');
+  const G = D.grafik.slice(Math.max(0, D.grafik.findIndex(g => g.terima > 0))), maks = Math.max(1, ...G.map(g => g.terima));
+  const grafik = G.map((g, i) => { const m = +g.awal.slice(5, 7), ini = i === G.length - 1;
+    return `<div class="batang${ini ? ' ini' : ''}" title="${BULAN[m - 1]} ${g.awal.slice(0, 4)}: ${rp(g.terima)} · ${g.total} pasien"><span class="num">${g.terima ? (g.terima / 1e6).toFixed(2).replace('.', ',') : ''}</span><i style="height:${Math.round(g.terima / maks * 100)}px"></i><small>${BLN[m - 1]}</small></div>`; }).join('');
+  return kepalaHalaman(jp.judul, jp.sub) + statusData() + pitaAtas() + `
+  <div class="ringkas">
+  <section class="kartu pad pahlawan">
+    <div class="l">Pendapatan bersih</div>
+    <div class="v num">${rp(s.bersih)}</div>
+    ${pct == null ? '' : `<div class="bilah" role="img" aria-label="${pct}% dari ${blnLalu}"><i style="width:${Math.min(100, pct)}%"></i></div>`}
+    <div class="banding num">${banding}</div>
+    <div class="tiga num">
+      <div><span class="l">Pasien</span><b>${n0(s.total) || '0'}</b></div>
+      <div><span class="l">Hari jaga</span><b>${s.hari}</b></div>
+      <div><span class="l">Rata-rata</span><b>${s.hari ? Math.round(s.total / s.hari) : 0}<small> /hari</small></b></div>
+    </div>
+  </section>
+  ${shift}
+  <section class="kartu pad rinci-kartu"><div class="kepala-kartu"><h2>Rincian jasa</h2><span class="ket">jumlah × tarif</span></div>${rinci}
+    <p class="ket" style="margin:12px 0 0">Akumulasi bersih ${D.tahun}: <b class="num" style="color:var(--teks)">${rp(D.akumulasi)}</b></p></section>
+  ${G.length > 1 ? `<section class="kartu pad"><div class="kepala-kartu"><h2>Diterima per periode</h2><span class="ket">Rp juta</span></div><div class="grafik" role="img" aria-label="Uang diterima per periode">${grafik}</div></section>` : ''}
+  </div>`;
 }
 
 function pendek(k) { return /^Event/.test(k) ? 'Event' : k.replace(/^Gantikan /, 'G. '); }
@@ -420,7 +521,7 @@ function vJadwal() {
   }
   const legenda = '<div class="leg-jd"><span><i class="ch p">Pagi</i> jaga saya</span><span><i class="ch g">G.</i> menggantikan</span><span><i class="ch dg">Dig.</i> digantikan</span><span><i class="ch ev">Event</i> belum dibayar</span><span><i class="ch ok">Event</i> lunas</span><span><i class="ch tg">Tugas</i> tugas khusus</span></div>';
   const riwayat = selesai.length ? `<p class="ket" style="margin:16px 4px 0">Terakhir dijawab: ${selesai.map(x => `${esc(x.nama)} (${tglPendek(x.t)} ${esc(x.shift)}) — ${esc(x.status.toLowerCase())}`).join(' · ')}</p>` : '';
-  return kepalaHalaman('Jadwal Shift · ' + jp.judul, jp.rentang + ' · pilih tanggal untuk mengubah', navPeriode() + tautSheet(D.gid.jadwal, 'Buka di Sheet')) + kartuMinta +
+  return kepalaHalaman('Jadwal · ' + BULAN[+D.periode.awal.slice(5, 7) - 1], 'ketuk tanggal untuk mengubah', tautSheet(D.gid.jadwal, 'Buka di Sheet')) + kartuMinta +
     (D.slot.length ? `<div class="jd-tata"><div><div class="kartu">${kal}</div>${legenda}</div><aside class="kartu pad jd-panel" id="panelJd">${editorJd(pilihJd)}</aside></div>`
       : '<div class="kartu kosong-isi">Periode ini di luar Jadwal Shift (Sheet menyimpan 1 periode lalu s.d. 4 periode ke depan).</div>') + riwayat;
 }
@@ -474,43 +575,67 @@ async function simpanKotak(row) {
 
 function vHarian() {
   const jp = judulPeriode(), s = D.ringkas;
-  const baris = D.harian.slice().reverse().map(h => `<tr><td class="k">${HARI[hariDari(h.t)]}, ${tglPanjang(h.t)}</td><td class="num">${h.hadir}</td><td class="num">${n0(h.pagi)}</td><td class="num">${n0(h.siang)}</td><td class="num">${n0(h.igd)}</td><td class="num"><b>${n0(h.total)}</b></td><td class="num">${rp(h.kotor)}</td><td class="num">${rp(h.pph)}</td><td class="num"><b>${rp(h.bersih)}</b></td><td class="k ket">${esc(h.sumber)}</td></tr>`).join('');
-  return kepalaHalaman('Catatan Harian · ' + jp.judul, jp.rentang + ' · ' + D.harian.length + ' hari jaga', navPeriode() + tautSheet(D.gid.data, 'Tambah data')) +
-    `<div class="kartu tabel-bungkus">${D.harian.length ? `<table><thead><tr><th class="k">Tanggal</th><th>Hadir</th><th>Pagi</th><th>Siang</th><th>IGD</th><th>Total</th><th>Kotor</th><th>PPh</th><th>Bersih</th><th class="k">Sumber</th></tr></thead><tbody>${baris}</tbody>
-      <tfoot><tr><td class="k">Jumlah</td><td class="num">${s.hadir}</td><td class="num">${n0(s.pagi)}</td><td class="num">${n0(s.siang)}</td><td class="num">${n0(s.igd)}</td><td class="num">${n0(s.total)}</td><td class="num">${rp(s.kotor)}</td><td class="num">${rp(s.pph)}</td><td class="num">${rp(s.bersih)}</td><td></td></tr></tfoot></table>`
-      : '<div class="kosong-isi">Belum ada hari jaga tercatat di periode ini.</div>'}</div>`;
+  const bag = h => [h.pagi && h.pagi + ' pagi', h.siang && h.siang + ' siang', h.igd && h.igd + ' IGD', h.mcu && h.mcu + ' MCU'].filter(Boolean).join(' · ');
+  const baris = D.harian.slice().reverse().map(h => `<div class="hr num"><span class="tg">${tglPendek(h.t)}</span><span class="rp">${rp(h.bersih)}</span>
+    <span class="ket">${h.hadir} hadir${bag(h) ? ' · ' + bag(h) : ''}${h.sumber && h.sumber !== 'Scan C-CARE' ? ' · ' + esc(h.sumber) : ''}</span><span class="ket r">${n0(h.total) || 0} pasien</span></div>`).join('');
+  return kepalaHalaman('Catatan · ' + BULAN[+D.periode.awal.slice(5, 7) - 1], jp.sub, tautSheet(D.gid.data, 'Tambah data')) +
+    `<div class="kartu strip4 num"><div><span class="l">Pagi</span><b>${n0(s.pagi) || 0}</b></div><div><span class="l">Siang</span><b>${n0(s.siang) || 0}</b></div><div><span class="l">IGD</span><b>${n0(s.igd) || 0}</b></div><div><span class="l">MCU</span><b>${n0(s.mcu) || 0}</b></div></div>
+    <section class="kartu daftar">${D.harian.length ? `<div class="daftar-kep ket"><span>${D.harian.length} hari jaga · terbaru di atas</span><span>bersih</span></div>${baris}
+      <div class="hr num jumlah"><span class="tg">Jumlah</span><span class="rp">${rp(s.bersih)}</span><span class="ket">${s.hadir} hadir · kotor ${rp(s.kotor)} · PPh ${rp(s.pph)}</span><span class="ket r">${n0(s.total) || 0} pasien</span></div>`
+      : '<div class="kosong-isi">Belum ada hari jaga tercatat di periode ini.</div>'}</section>`;
 }
-function vBulanan() {
-  const L = D.bulanan, t = L.reduce((a, x) => { ['hari', 'hadir', 'pagi', 'siang', 'igd', 'total', 'kotor', 'pph', 'bersih'].forEach(k => a[k] += x[k]); return a; }, { hari: 0, hadir: 0, pagi: 0, siang: 0, igd: 0, total: 0, kotor: 0, pph: 0, bersih: 0 });
-  const baris = L.map(x => { const m = +x.awal.slice(5, 7), ada = x.hari > 0;
-    return `<tr${x.awal === D.periode.awal ? ' class="ini"' : ''}><td class="k"><b>${BULAN[m - 1]}</b> <span class="ket">${tglPanjang(x.awal)} – ${tglPanjang(x.akhir)}</span></td><td class="num">${ada ? x.hari : '–'}</td><td class="num">${ada ? x.hadir : '–'}</td><td class="num">${ada ? n0(x.pagi) : '–'}</td><td class="num">${ada ? n0(x.siang) : '–'}</td><td class="num">${ada ? n0(x.igd) : '–'}</td><td class="num">${ada ? '<b>' + n0(x.total) + '</b>' : '–'}</td><td class="num">${ada ? Math.round(x.total / x.hari) : '–'}</td><td class="num">${ada ? rp(x.bersih) : '–'}</td></tr>`; }).join('');
-  return kepalaHalaman('Rekap Bulanan · ' + D.tahun, 'Satu baris = satu periode (tanggal ' + D.mulai + ' s.d. tanggal ' + (D.mulai - 1) + ' bulan berikutnya)', navPeriode() + tautSheet(D.gid.bulanan, 'Buka di Sheet')) +
-    `<div class="kartu tabel-bungkus"><table><thead><tr><th class="k">Bulan</th><th>Hari jaga</th><th>Kehadiran</th><th>Pagi</th><th>Siang</th><th>IGD</th><th>Total</th><th>Rata-rata/hari</th><th>Bersih</th></tr></thead><tbody>${baris}</tbody>
-    <tfoot><tr><td class="k">Jumlah ${D.tahun}</td><td class="num">${t.hari}</td><td class="num">${t.hadir}</td><td class="num">${n0(t.pagi)}</td><td class="num">${n0(t.siang)}</td><td class="num">${n0(t.igd)}</td><td class="num">${n0(t.total)}</td><td class="num">${t.hari ? Math.round(t.total / t.hari) : '–'}</td><td class="num">${rp(t.bersih)}</td></tr></tfoot></table></div>`;
+function muatPasien() {
+  const awal = D.periode.awal; if (muatPasien.jalan === awal) return; muatPasien.jalan = awal;
+  api.pasien(awal).then(r => { muatPasien.jalan = ''; Object.values(cache).concat([D]).forEach(x => { if (x && x.periode && x.periode.awal === r.awal) x.pasien = r.pasien; }); if (tab === 'pasien' && D.periode.awal === r.awal) gambar(); })
+    .catch(e => { muatPasien.jalan = ''; if (tab === 'pasien') { D.pasien = null; toast('Daftar pasien belum bisa dibaca: ' + e.message); } });
+}
+function cariPasien(q) {
+  cariPasien.q = q = String(q || '').toLowerCase().trim();
+  document.querySelectorAll('#dPasien .grup').forEach(g => {
+    let ada = 0; const kep = g.dataset.cari;
+    g.querySelectorAll('.ps').forEach(r => { const on = !q || kep.includes(q) || r.textContent.toLowerCase().includes(q); r.hidden = !on; ada += on; });
+    g.hidden = !ada;
+  });
 }
 function vPasien() {
-  const jp = judulPeriode(), L = D.pasien, J = { poli: 'Poli umum', ugd: 'UGD', mcu: 'MCU', tele: 'Telemedisin' };
-  let no = 0, kunci = '';
-  const baris = L.map(p => { const k = p.t + p.shift; if (k !== kunci) { kunci = k; no = 0; } no++;
-    return `<tr><td class="k">${no === 1 ? HARI[hariDari(p.t)] + ', ' + tglPanjang(p.t) : ''}</td><td class="k">${no === 1 ? esc(p.shift) : ''}</td><td class="num">${no}</td><td class="k">${esc(p.nama)}</td><td class="k">${J[p.jenis] || esc(p.jenis)}</td></tr>`; }).join('');
-  return kepalaHalaman('Rekap Pasien · ' + jp.judul, L.length + ' pasien hasil scan C-CARE · disimpan untuk periode berjalan saja', navPeriode() + tautSheet(D.gid.pasien, 'Buka di Sheet')) +
-    (L.length ? `<div style="margin-bottom:12px"><label for="cariPasien" class="ket" style="display:block;margin-bottom:4px;font-weight:600">Cari pasien</label><input id="cariPasien" class="cari" placeholder="mis. nama atau tanggal" autocomplete="off"></div>
-      <div class="kartu tabel-bungkus"><table id="tPasien"><thead><tr><th class="k">Tanggal</th><th class="k">Shift</th><th>No</th><th class="k">Nama pasien</th><th class="k">Jenis</th></tr></thead><tbody>${baris}</tbody></table></div>`
-      : `<div class="kartu kosong-isi">${D.periode.berjalan ? 'Belum ada hasil scan di periode ini.' : 'Rekap Pasien hanya menyimpan periode berjalan — periode lalu sudah dihapus otomatis (jumlahnya tetap di Catatan Harian).'}</div>`);
+  const jp = judulPeriode(), bln = BULAN[+D.periode.awal.slice(5, 7) - 1];
+  if (!Array.isArray(D.pasien)) { muatPasien(); return kepalaHalaman('Pasien · ' + bln, 'Memuat daftar pasien…') + '<section class="kartu pad">' + '<i class="sk" style="width:100%;height:14px"></i>'.repeat(6) + '</section>'; }
+  const J = { poli: 'Poli', ugd: 'IGD', mcu: 'MCU', tele: 'Tele' }, F = [['semua', 'Semua'], ['poli', 'Poli'], ['ugd', 'IGD'], ['mcu', 'MCU'], ['tele', 'Tele']];
+  const L = D.pasien.filter(p => fPasien === 'semua' || p.jenis === fPasien), grup = [];
+  L.slice().reverse().forEach(p => { const k = p.t + '|' + p.shift; let g = grup[grup.length - 1]; if (!g || g.k !== k) grup.push(g = { k, t: p.t, shift: p.shift, isi: [] }); g.isi.unshift(p); });
+  const html = grup.map(g => `<section class="kartu grup" data-cari="${esc((tglPendek(g.t) + ' ' + tglPanjang(g.t) + ' ' + g.shift).toLowerCase())}"><div class="grup-kep"><b>${tglPendek(g.t)} · ${esc(g.shift)}</b><span class="ket num">${g.isi.length} pasien</span></div>
+    ${g.isi.map((p, i) => `<div class="ps num"><span class="no">${i + 1}</span><span>${esc(p.nama)}</span><span class="ket">${J[p.jenis] || esc(p.jenis)}</span></div>`).join('')}</section>`).join('');
+  return kepalaHalaman('Pasien · ' + bln, D.pasien.length + ' hasil scan C-CARE · periode berjalan saja', tautSheet(D.gid.pasien, 'Buka di Sheet')) +
+    (D.pasien.length ? `<div class="alat-pasien"><label for="cariPasien" class="lbl">Cari pasien</label><input id="cariPasien" class="cari" placeholder="mis. nama atau 12 Nov" autocomplete="off">
+      <div class="chips" role="group" aria-label="Jenis pasien">${F.map(([f, l]) => `<button type="button" data-aksi="fp" data-f="${f}" aria-pressed="${fPasien === f}">${l}</button>`).join('')}</div></div>
+      <div id="dPasien" class="tumpuk">${html || '<div class="kartu kosong-isi">Tidak ada pasien jenis ini.</div>'}</div>`
+      : `<div class="kartu kosong-isi">${D.periode.berjalan ? 'Belum ada hasil scan di periode ini.' : 'Rekap Pasien hanya menyimpan periode berjalan — periode lalu sudah dihapus otomatis (jumlahnya tetap di Catatan).'}</div>`);
 }
-function vAtur() {
+function vLain() {
+  const L = D.bulanan.filter(x => x.hari > 0 || x.awal === D.periode.awal);
+  const t = L.reduce((a, x) => { a.hari += x.hari; a.total += x.total; a.terima += x.bersih + (x.eventUang || 0); return a; }, { hari: 0, total: 0, terima: 0 });
+  const bul = L.map(x => `<tr${x.awal === D.periode.awal ? ' class="ini"' : ''}><td class="k">${BULAN[+x.awal.slice(5, 7) - 1]}</td><td class="num">${x.hari || '–'}</td><td class="num">${x.hari ? n0(x.total) : '–'}</td><td class="num">${x.hari ? rp(x.bersih + (x.eventUang || 0)) : '–'}</td></tr>`).join('');
   const pct = v => (v * 100).toLocaleString('id-ID', { maximumFractionDigits: 1 }) + '%';
-  const tarif = D.tarif.map(t => `<tr><td class="k">${tglPanjang(t.mulai)}</td><td class="num">${rp(t.hadir)}</td><td class="num">${rp(t.pagi)}</td><td class="num">${rp(t.siang)}</td><td class="num">${rp(t.igd)}</td><td class="num">${pct(t.pph)}</td><td class="k ket">${esc(t.ket)}</td></tr>`).join('');
+  const tk = D.tarif[D.tarif.length - 1];
+  const tarif = D.tarif.slice().reverse().map(x => `<tr><td class="k">${tglPanjang(x.mulai)}</td><td class="num">${rp(x.hadir)}</td><td class="num">${rp(x.pagi)}</td><td class="num">${rp(x.siang)}</td><td class="num">${rp(x.igd)}</td><td class="num">${rp(x.mcu)}</td><td class="num">${pct(x.pph)}</td></tr>`).join('');
   const libur = D.libur.map(x => `<tr><td class="k">${HARI[hariDari(x.t)]}, ${tglPanjang(x.t)}</td><td class="k">${esc(x.ket)}</td></tr>`).join('');
-  const aplikasi = CFG.mode === 'gas' ? '' : `<section class="kartu pad" style="margin-top:24px"><h2>Aplikasi di HP ini</h2>
-    <p class="ket" style="margin:4px 0 12px">Tersambung ke Sheet ${esc(D.nama)}. Kunci tersimpan hanya di perangkat ini.</p>
-    <div class="navper" style="flex-wrap:wrap">${pasangPrompt ? '<button class="tb utama" data-aksi="pasang">Pasang di layar utama</button>' : ''}<button class="tb kedua" data-aksi="keluar">Keluar dari HP ini</button></div></section>`;
-  return kepalaHalaman('Pengaturan', 'Baca saja di sini — ubah lewat Sheet', `<a class="tb kedua" href="${esc(D.url)}" target="_blank" rel="noopener">Buka Sheet</a>` + tautSheet(D.gid.atur)) + `
-  <div class="kartu strip"><div><div class="l">Nama dokter</div><div class="v" style="font-size:20px">${esc(D.nama)}</div><span class="k">persis seperti di C-CARE</span></div>
-    <div><div class="l">Tempat praktik</div><div class="v" style="font-size:20px">${esc(D.tempat)}</div></div>
-    <div><div class="l">Periode rekap</div><div class="v" style="font-size:20px">Tanggal ${D.mulai} s.d. ${D.mulai - 1}</div><span class="k">bulan berikutnya</span></div></div>
-  <section class="kartu" style="margin-bottom:24px"><div class="pad" style="padding-bottom:0"><h2>Riwayat tarif jasa</h2></div><div class="tabel-bungkus" style="margin-top:12px"><table><thead><tr><th class="k">Berlaku mulai</th><th>Kehadiran</th><th>Poli pagi</th><th>Poli siang</th><th>IGD / tindakan</th><th>PPh</th><th class="k">Keterangan</th></tr></thead><tbody>${tarif}</tbody></table></div></section>
-  <section class="kartu"><div class="pad" style="padding-bottom:0"><h2>Tanggal merah ${D.tahun}</h2><p class="ket" style="margin:4px 0 0">Jasa shift tidak dihitung di tanggal ini.</p></div><div class="tabel-bungkus" style="margin-top:12px"><table><tbody>${libur || '<tr><td class="k ket">Tidak ada.</td></tr>'}</tbody></table></div></section>` + aplikasi;
+  const panah = `<span class="chev">${IK.kanan}</span>`;
+  return kepalaHalaman('Lainnya', D.nama + ' · ' + D.tempat, '', true) + `
+  <div class="tumpuk">
+  <section class="kartu"><div class="kepala-kartu pad-kep"><h2>Rekap bulanan ${D.tahun}</h2><span class="ket">tgl ${D.mulai} s.d. ${D.mulai - 1}</span></div>
+    <div class="tabel-bungkus"><table><thead><tr><th class="k">Bulan</th><th>Hari</th><th>Pasien</th><th>Diterima</th></tr></thead><tbody>${bul}</tbody>
+    <tfoot><tr><td class="k">Jumlah</td><td class="num">${t.hari}</td><td class="num">${n0(t.total)}</td><td class="num">${rp(t.terima)}</td></tr></tfoot></table></div>
+    <p class="ket" style="margin:0;padding:8px 16px 12px">Diterima = bersih setelah PPh + uang event. <a href="${esc(D.url)}#gid=${D.gid.bulanan}" target="_blank" rel="noopener">Rincian di Sheet</a></p></section>
+  <section class="kartu menu-lain"><h2 class="pad-kep">Pengaturan</h2>
+    <details><summary><span>Tarif jasa${tk ? `<small>${rp(tk.hadir)} hadir · ${rp(tk.pagi)} poli · ${rp(tk.igd)} IGD · ${rp(tk.mcu)} MCU</small>` : ''}</span>${panah}</summary>
+      <div class="tabel-bungkus"><table><thead><tr><th class="k">Berlaku mulai</th><th>Hadir</th><th>Pagi</th><th>Siang</th><th>IGD</th><th>MCU</th><th>PPh</th></tr></thead><tbody>${tarif}</tbody></table></div></details>
+    <details><summary><span>Tanggal merah ${D.tahun}<small>${D.libur.length} hari · jasa shift tidak dihitung</small></span>${panah}</summary>
+      <div class="tabel-bungkus"><table><tbody>${libur || '<tr><td class="k ket">Tidak ada.</td></tr>'}</tbody></table></div></details>
+    <button class="baris-menu" data-aksi="bagi"><span>Bagikan jadwal ke teman</span>${panah}</button>
+    <button class="baris-menu" data-aksi="scan"><span>Minta scan C-CARE</span>${panah}</button>
+    <a class="baris-menu" href="${esc(D.url)}" target="_blank" rel="noopener"><span>Buka Google Sheet</span><span class="chev">${IK.luar}</span></a>
+    ${CFG.mode === 'gas' ? '' : `${pasangPrompt ? `<button class="baris-menu" data-aksi="pasang"><span>Pasang di layar utama</span>${panah}</button>` : ''}<button class="baris-menu bahaya" data-aksi="keluar"><span>Keluar dari HP ini</span></button>`}
+  </section></div>`;
 }
 
 /* ---------- belum tersambung (aplikasi HP pertama kali dibuka) ---------- */
